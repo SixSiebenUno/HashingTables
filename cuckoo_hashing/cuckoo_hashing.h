@@ -58,6 +58,8 @@ class CuckooTable : public HashingTable {
 
   std::vector<uint64_t> AsRawVector() const final;
 
+  std::vector<int32_t> VectorOrder();
+
   std::vector<std::size_t> GetNumOfElementsInBins() const final;
 
  private:

@@ -99,6 +99,16 @@ std::vector<uint64_t> CuckooTable::AsRawVector() const {
   return raw_table;
 }
 
+std::vector<int32_t> CuckooTable::VectorOrder() {
+  std::vector<int32_t> order(num_bins_, -1);
+  for (auto i = 0; i < num_bins_; ++i) {
+    if (!hash_table_.at(i).IsEmpty()) {
+      order[i] = hash_table_.at(i).GetGlobalID();
+    }
+  }
+  return order;
+}
+
 std::vector<std::size_t> CuckooTable::GetNumOfElementsInBins() const {
   std::vector<uint64_t> num_elements_in_bins(hash_table_.size(), 0);
   for (auto i = 0ull; i < hash_table_.size(); ++i) {
